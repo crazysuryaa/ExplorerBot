@@ -6,12 +6,13 @@
     <param name="robot_description" textfile="$(find explorer_bot)/urdf/explorer_camera.urdf" />
 
     <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch"/> -->
-    <include file="$(find explorer_bot)/world/aws_robomaker_hospital_world/launch/hospital.launch"/>
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"  args="-param robot_description -urdf -model explorer_camera" />
+    <!-- <include file="$(find explorer_bot)/world/aws_robomaker_hospital_world/launch/hospital.launch"/> -->
+    <include file="$(find aws_robomaker_small_warehouse_world)/launch/small_warehouse.launch"/>
+
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"  args="-z 0.5 -param robot_description -urdf -model explorer_camera" />
 
     <node name="Rsp" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
 
-    <node name="Joint_tester" pkg="rviz" type="rviz" output="screen" args="-d $(find explorer_bot)/config/map.rviz"/>
 
 
     <node pkg="gmapping" type="slam_gmapping" name="maping_node">
@@ -28,5 +29,7 @@
         <rosparam file="$(find explorer_bot)/config/global_costmap_params.yaml" command="load" />
         <rosparam file="$(find explorer_bot)/config/trajectory_planner.yaml" command="load" />
       </node>
+    <node name="Joint_tester" pkg="rviz" type="rviz" output="screen" args="-d $(find explorer_bot)/config/map.rviz"/>
+
 
 </launch>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="luqman_bot">
+<robot name="explorer_bot">
 
     <link name="base_link">
         <visual>
